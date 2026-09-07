@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+vectorstore/*
+!vectorstore/.gitkeep
+data/documents/*
+!data/documents/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+.ipynb_checkpoints/
+.DS_Store

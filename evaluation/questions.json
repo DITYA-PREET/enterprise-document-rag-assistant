@@ -1,0 +1,10 @@
+[
+  {
+    "question": "What is the work-from-home policy?",
+    "expected_sources": ["Employee Handbook.pdf"]
+  },
+  {
+    "question": "How many annual leave days are available?",
+    "expected_sources": ["Leave Policy.pdf"]
+  }
+]
