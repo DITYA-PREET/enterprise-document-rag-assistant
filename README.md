@@ -97,3 +97,7 @@ Never commit `.env`, API keys, passwords, confidential documents, or private com
 ## Project requirements mapping
 
 The implementation covers the minimum requirements in the capstone specification: ingestion, extraction, chunking, metadata, embeddings, vector database, semantic retrieval, LLM integration, RAG, prompt engineering, source attribution, hallucination handling, evaluation scaffolding, Streamlit deployment, GitHub-ready structure and README.
+
+
+### Gemini availability fallback
+The application uses Gemini 3.8 Flash by default and automatically falls back to other supported Flash models when a transient model-availability error occurs. Configure `GEMINI_FALLBACK_MODELS` as a comma-separated list if needed.

@@ -22,10 +22,31 @@ class RAGPipeline:
         self.model_name = model_name
         self.min_confidence = min_confidence
         self.client = None
+
         api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            # Streamlit Community Cloud stores secrets in st.secrets.
+            try:
+                import streamlit as st
+                api_key = st.secrets.get("GEMINI_API_KEY")
+            except Exception:
+                api_key = None
+
         if api_key:
             from google import genai
             self.client = genai.Client(api_key=api_key)
+
+        # Gemini can temporarily return 503 when a model is overloaded.
+        # Keep multiple currently supported Flash models available so a
+        # temporary capacity problem does not take down the whole app.
+        configured_fallbacks = os.getenv(
+            "GEMINI_FALLBACK_MODELS",
+            "gemini-3.8-flash,gemini-3.6-flash,gemini-3.5-flash-lite"
+        )
+        self.fallback_models = []
+        for model in [self.model_name] + [m.strip() for m in configured_fallbacks.split(",")]:
+            if model and model not in self.fallback_models:
+                self.fallback_models.append(model)
 
     def _context(self, results):
         blocks = []
@@ -73,12 +94,31 @@ class RAGPipeline:
                 "confidence": best,
             }
 
-        response = self.client.models.generate_content(
-            model=self.model_name,
-            contents=prompt,
-        )
+        errors = []
+        for model in self.fallback_models:
+            try:
+                response = self.client.models.generate_content(
+                    model=model,
+                    contents=prompt,
+                )
+                text = (response.text or "").strip()
+                if text:
+                    return {
+                        "answer": text,
+                        "sources": results,
+                        "confidence": best,
+                        "model": model,
+                    }
+            except Exception as exc:
+                errors.append(f"{model}: {exc}")
+
         return {
-            "answer": response.text.strip(),
+            "answer": (
+                "The document retrieval worked, but the Gemini generation service is "
+                "temporarily unavailable. Please try the question again in a moment. "
+                "The app automatically tried multiple Gemini Flash models."
+            ),
             "sources": results,
             "confidence": best,
+            "error": " | ".join(errors),
         }
