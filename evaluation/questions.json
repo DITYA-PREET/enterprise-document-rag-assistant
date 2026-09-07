@@ -1,10 +1,62 @@
 [
   {
-    "question": "What is the work-from-home policy?",
-    "expected_sources": ["Employee Handbook.pdf"]
+    "question": "What is the primary goal of the Enterprise Document Intelligence & RAG Assistant?",
+    "expected_answer": "Build an AI assistant that retrieves relevant information from an enterprise document collection and generates accurate, grounded, source-attributed answers.",
+    "expected_sources": ["Enterprise_Document_Intelligence_RAG_AI_Capstone.pdf"],
+    "expected_pages": [12]
   },
   {
-    "question": "How many annual leave days are available?",
-    "expected_sources": ["Leave Policy.pdf"]
+    "question": "What are the main objectives of the project?",
+    "expected_answer": "The objectives include document ingestion, text extraction and cleaning, chunking, embeddings, vector database search, relevant context retrieval, grounded LLM generation, source references, insufficient-information handling, evaluation, and Streamlit deployment.",
+    "expected_sources": ["Enterprise_Document_Intelligence_RAG_AI_Capstone.pdf"],
+    "expected_pages": [1]
+  },
+  {
+    "question": "What is the recommended conceptual flow for retrieval?",
+    "expected_answer": "Question → Query Embedding → Vector Search → Top-K Relevant Chunks → Context for LLM.",
+    "expected_sources": ["Enterprise_Document_Intelligence_RAG_AI_Capstone.pdf"],
+    "expected_pages": [5]
+  },
+  {
+    "question": "What does an embedding represent?",
+    "expected_answer": "An embedding is a vector representation of document chunks and user queries that allows semantically similar content to be retrieved.",
+    "expected_sources": ["Enterprise_Document_Intelligence_RAG_AI_Capstone.pdf"],
+    "expected_pages": [5]
+  },
+  {
+    "question": "Why should the same embedding model generally be used for documents and queries?",
+    "expected_answer": "Using the same embedding model keeps document and query representations in the same vector space so their semantic similarity can be compared consistently.",
+    "expected_sources": ["Enterprise_Document_Intelligence_RAG_AI_Capstone.pdf"],
+    "expected_pages": [5]
+  },
+  {
+    "question": "What should the system do when the knowledge base does not contain sufficient information?",
+    "expected_answer": "It should state that it could not find sufficient information in the provided documents and must not confidently invent an answer.",
+    "expected_sources": ["Enterprise_Document_Intelligence_RAG_AI_Capstone.pdf"],
+    "expected_pages": [6]
+  },
+  {
+    "question": "What evaluation dimensions can be used to evaluate the RAG system?",
+    "expected_answer": "Retrieval relevance, context relevance, answer correctness, groundedness, completeness, and hallucination rate.",
+    "expected_sources": ["Enterprise_Document_Intelligence_RAG_AI_Capstone.pdf"],
+    "expected_pages": [7]
+  },
+  {
+    "question": "What technologies are recommended for the vector database?",
+    "expected_answer": "FAISS, ChromaDB, Qdrant, Pinecone, and Weaviate are suitable technologies, with FAISS or ChromaDB recommended for beginner and intermediate implementations.",
+    "expected_sources": ["Enterprise_Document_Intelligence_RAG_AI_Capstone.pdf"],
+    "expected_pages": [5]
+  },
+  {
+    "question": "What are the minimum technical requirements of the project?",
+    "expected_answer": "Document ingestion, text extraction, text chunking, document metadata, embeddings, vector database, semantic retrieval, LLM integration, RAG pipeline, prompt engineering, source attribution, hallucination handling, basic RAG evaluation, Streamlit deployment, GitHub repository, and a professional README.",
+    "expected_sources": ["Enterprise_Document_Intelligence_RAG_AI_Capstone.pdf"],
+    "expected_pages": [10]
+  },
+  {
+    "question": "What are the expected final deliverables?",
+    "expected_answer": "Document collection or reproducible acquisition instructions, processing pipeline, chunking and embedding implementation, vector database/index, RAG pipeline, prompt configuration, RAG evaluation dataset and results, Streamlit application, GitHub repository, README documentation, architecture documentation, and final demonstration.",
+    "expected_sources": ["Enterprise_Document_Intelligence_RAG_AI_Capstone.pdf"],
+    "expected_pages": [12]
   }
 ]
